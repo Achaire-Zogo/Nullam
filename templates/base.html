@@ -1,10 +1,66 @@
+{% load  static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!-- Custom -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Dylan zogo</title>
+
+    <script src="{% static 'js/script.js' %}" type="text/javascript"></script>
 </head>
 <body>
-$END$
+
+<!--NAV_bar-->
+{% include 'doc_include/__navbar.html' %}
+
+<!--
+<div class="navbar">
+		<a href="#" class="logo">Nullam</a>
+		<ul class="nav">
+			<li><a href="#Creer evenemnt">Creer un evenement</a></li>
+			<li><a href="#Contact">Contact</a></li>
+			<li><a href="#se connecter">Se connecter</a></li>
+		</ul>
+	</div>-->
+<!--tobar-->
+{#{% include 'doc_include/__topbar.html' %}#}
+<div id="slider">
+<img src="{% static '/images/nullam1.jpeg' %}" id="img" />
+
+
+    <div id="btn_left"><img onclick="slider(-1);" class="left" src="{% static '/images/left.png' %}" /></div>
+    <div id="btn_rigth"><img onclick="slider(1);" class="right" src="{% static '/images/right.png' %}"/></div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+
+
+
+<!--
+<div class="footer">
+  <h2>
+  NULLAM<br>
+  	<img src="{% static '/images/youtube.png' %}" class="sociaux">
+  	<img src="{% static '/images/instagram.png' %}" class="sociaux">
+  	<img src="{% static '/images/facebook.png' %}" class="sociaux">
+  	<img src="{% static '/images/twiter.png' %}" class="sociaux">
+  </h2>
+</div>-->
+<!--footer-->
+{% include 'doc_include/__footer.html' %}
+
+  <script src="{% static 'js/jquery-3.3.1.min.js ' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %} "></script>
 </body>
 </html>

@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>acceuill</title>
-</head>
-<body>
- <h1>bienvenus </h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container" id="contenu">
+
+        <div class="row">
+        {% for x in event %}
+            <div class="col">
+                <div class="colonne" style="width: 18rem;">
+                    <img src="media/{{x.photo}}" class="image" style="width:100%" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ x.titre }}</h5>
+                        <p class="card-text">{{ x.description }}</p>
+                        <div class="middle">
+                            <a href="#" class="text">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
