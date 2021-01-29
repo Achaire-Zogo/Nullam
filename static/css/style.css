@@ -13,7 +13,7 @@ a{
 	color: #E11037;
 }
 
-#slider{
+.silder{
 	padding-top: 1%;
 	width:98%;
 	height:450px;
@@ -22,65 +22,80 @@ a{
 	}
 #slide1{
 	padding-top: 80px;
-	width:50%;
+	width:33%;
 	height:450px;
-	margin-left: 10px;
+	margin-left: -82px;
 	position:relative;
 	border-radius: 10px;
 }
 #slide2{
-	bottom: 100%;
-	left: 50%;
-	width:50%;
+	top: -370px;
+	left: 27%;
+	width:33%;
 	height:450px;
 	margin-right: 50%;
 	position:relative;
 	border-radius: 10px;
 }	
+#slide3{
+	top: -816px;
+	left: 61%;
+	width:33%;
+	height:450px;
+	margin-right: 50%;
+	position:relative;
+	border-radius: 10px;
+}
 #img{
 	width:100%;
-	height:450px;
+	height:220px;
 	position:absolute;
 	border-radius: 10px;
 	}
 #img1{
 	width:100%;
-	height:450px;
+	height:220px;
+	position:absolute;
+	border-radius: 10px;
+}
+#img2{
+	width:100%;
+	height:220px;
 	position:absolute;
 	border-radius: 10px;
 }	
 			#btn_left{
 				height:550px;
 				width:100px;
-				left:0px;
+				left:125px;
 				top:0px;
 				position:absolute;
 			}
 			#btn_rigth{
 				height:550px;
 				width:100px;
-				right:0px;
+				right:10px;
 				top:0px;
 				position:absolute;
 				}
 .left{
 	position:absolute;
-	top:50%;
-	left:10px;
+	top:31%;
+	left:-3px;
 	opacity:0.4;
-	width: 60px;
-	height: 70px;
+	width: 64px;
+	height: 42px;
 	}
 	.left:hover{
 		opacity:1;
 		}
 .right{
 	position:absolute;
-	top:50%;
-	right:10px;
+	top:31%;
+	right:73px;
 	opacity:0.4;
-	width: 60px;
-	height: 70px;
+	width: 64px;
+	height: 42px;
 	}
 	.right:hover{
 		opacity:1;
@@ -89,85 +104,6 @@ a{
 
 
 /*------------------réseaux sociaux------------------------------*/
-#rs{
-	position: absolute;
-	text-align: center;
-	
-}
-.sociaux{
-	
-	margin: 5px;
-}
-
-/*------------------contenu------------------------------*/
-
-#contenu{
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom-width: 0px;
-	padding-left: 10px;
-	padding-top: 20px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	font-family: 'Gothic A1', serif;
-	justify-content: space-between;
-
-}
-
-/*_______________________________________________________________________________*/
-
-.colonne {
-	float: left;
-	width: 25%;
-	min-height:100%;
-}
-.colonne1{
-	background-color: #020202;
-    position: relative;
-    float: left;
-    width: 98%;
-    height: 300px;
-    min-height: 85px;
-    padding: 1px;
-    top: 82px;
-    margin: 8px
-}
-.image {
-	opacity: 1;
-	margin-left: 220px;
-	/*height: auto;*/height: 100%;
-	transition: .5s ease;
-	backface-visibility: hidden;
-	border-radius: 25px;
-}
-
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%)
-}
-
-.colonne:hover .image {
-  opacity: 0.3;
-}
-
-.colonne:hover .middle {
-  opacity: 1;
-}
-
-/*_______________________________________________________________________________*/
-
-/*________________________________________4eme Partie_________________________________________*/
-
-
-
-/*________________________________________5eme Partie_________________________________________*/
-
 
 
 
@@ -209,120 +145,15 @@ a:hover{
 	color: rgb(12, 147, 224);
 }
 
-.contact-are .service-area .spotify-area{
-	position: relative;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-wrap: wrap;
-	flex-direction: row;
-	width: 100%;
-	height: 700px;
-}
 
-
-/*--------------------------integration popup-----------------------*/
-
-.modal {
-	display: none; /* Masqué par défaut */
-	position: fixed; /* Rester dans la place */
-	z-index: 8888; /* S'asseoir en haut */
-	left: 0;
-	top: 0;
-	width: 100%; /* Largeur complète */
-	height: 100%; /* Hauteur complète */
-	overflow: auto; /* Activer défilement si nécessaire */
-	background-color: rgb(0,0,0); /* Couleur de plan */
-	background-color: rgba(0,0,0,0.4); /*  w/ opacité noir*/
-	}
-	/* Contenu Modal/Boîte*/
-	.modal-content {
-	background-color: #fefefe;
-	margin: 10vh auto; /* 15% d'en haut et centré */
-	padding: 20px;
-	border: 1px solid #888;
-	width: 60%; /* Pouvait être plus ou moins, dépend de la taille de l'écran  */
-	}
-	@media (min-width: 1366px) {
-	.modal-content {
-	background-color: #fefefe;
-	margin: 10vh auto; /* 15% d'en haut et centré */
-	padding: 20px;
-	border: 1px solid #888;
-	width: 30%; /* Pouvait être plus ou moins, dépend de la taille de l'écran */
-	}
-	}
-	h2, p {
-	margin: 0 0 20px;
-	font-weight: 400;
-	color: #666;
-	}
-	span{
-	color: #666;
-	display:block;
-	padding:0 0 5px;
-	}
-	form {
-	padding: 25px;
-	margin: 25px;
-	box-shadow: 0 2px 5px #f5f5f5; 
-	background: #eee; 
-	}
-	input, textarea {
-	width: calc(100% - 18px);
-	padding: 8px;
-	margin-bottom: 20px;
-	border: 1px solid #1c87c9;
-	outline: none;
-	}
-	.contact-form button {
-	width: 100%;
-	padding: 10px;
-	border: none;
-	background: #1c87c9; 
-	font-size: 16px;
-	font-weight: 400;
-	color: #fff;
-	}
-	button:hover {
-	background: #2371a0;
-	}    
-	/* Le bouton Fermer */
-	.close {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-	}
-	.close:hover,
-	.close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-	}
-	button.button {
-	background:none;
-	border-top:none;
-	outline: none;
-	border-right:none;
-	border-left:none;
-	border-bottom:#02274a 8px solid;
-	font-size:16px;
-	cursor:pointer;
-	}
-	button.button:hover {
-	border-bottom:#a99567 1px solid;
-	color:#a99567;
-	}
-
-
-	
 /* Footer */
-.footer {clear: left;
+.footer {
+	clear: left;
 	padding: 1px;
-	  bottom: 0;
+	bottom: 0;
+	z-index: -1;
 	  
-	  margin-top: 100%;
+	 position: relative;
 	text-align: center;
 	background: rgb(243, 240, 240);
 	  background-color: rgb(0, 0, 0);
