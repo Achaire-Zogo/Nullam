@@ -21,19 +21,15 @@
 <!--NAV_bar-->
 {% include 'doc_include/__navbar.html' %}
 
-<!--
-<div class="navbar">
-		<a href="#" class="logo">Nullam</a>
-		<ul class="nav">
-			<li><a href="#Creer evenemnt">Creer un evenement</a></li>
-			<li><a href="#Contact">Contact</a></li>
-			<li><a href="#se connecter">Se connecter</a></li>
-		</ul>
-	</div>-->
-<!--tobar-->
-{#{% include 'doc_include/__topbar.html' %}#}
+
+
 <div id="slider">
-<img src="{% static '/images/nullam1.jpeg' %}" id="img" />
+<div id="slide1">
+  <img src="{% static '/images/nullam1.jpeg' %}" id="img" />
+</div>
+<div id="slide2">
+  <img src="{% static '/images/nullam1.jpeg' %}" id="img1" />
+</div>
 
 
     <div id="btn_left"><img onclick="slider(-1);" class="left" src="{% static '/images/left.png' %}" /></div>
@@ -46,16 +42,8 @@
 
 
 
-<!--
-<div class="footer">
-  <h2>
-  NULLAM<br>
-  	<img src="{% static '/images/youtube.png' %}" class="sociaux">
-  	<img src="{% static '/images/instagram.png' %}" class="sociaux">
-  	<img src="{% static '/images/facebook.png' %}" class="sociaux">
-  	<img src="{% static '/images/twiter.png' %}" class="sociaux">
-  </h2>
-</div>-->
+
+
 <!--footer-->
 {% include 'doc_include/__footer.html' %}
 
