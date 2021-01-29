@@ -10,7 +10,6 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <!-- Custom -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Nullam</title>
 
@@ -20,34 +19,16 @@
 
 <!--NAV_bar-->
 {% include 'doc_include/__navbar.html' %}
-
-
-
-<div id="slider">
-<div id="slide1">
-  <img src="{% static '/images/nullam1.jpeg' %}" id="img" />
-</div>
-<div id="slide2">
-  <img src="{% static '/images/nullam1.jpeg' %}" id="img1" />
-</div>
-
-
-    <div id="btn_left"><img onclick="slider(-1);" class="left" src="{% static '/images/left.png' %}" /></div>
-    <div id="btn_rigth"><img onclick="slider(1);" class="right" src="{% static '/images/right.png' %}"/></div>
-</div>
+<!--SLIDER-->
+{% include 'doc_include/_slider.html' %}
 
 {% block content %}
 {% endblock %}
 
-
-
-
-
-
 <!--footer-->
 {% include 'doc_include/__footer.html' %}
 
-  <script src="{% static 'js/jquery-3.3.1.min.js ' %}"></script>
+
   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'js/main.js' %} "></script>
 </body>
