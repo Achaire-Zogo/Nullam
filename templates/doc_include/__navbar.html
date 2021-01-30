@@ -1,5 +1,14 @@
 <div class="navbar">
     <a href="#" class="logo">Nullam</a>
+    <div id="navbar-search" class="navbar-form navbar-left">
+        <form id="search" autocomplete="off" onsubmit="return false">
+            <i class="fas fa-chevron-left hide-search visible-xs"></i>
+            <i class="fas fa-search hidden-xs"></i>
+            <input type="text" name="radix" class="form-control input-md" placeholder="Recherche">
+            <input type="hidden" name="q">
+            <span class="spinner" style="display: none"></span>
+        </form>
+    </div>
     <ul class="nav">
         <li><a href="#Creer evenemnet">Creer un evenement</a></li>
         <li><a href="#Contact">Contact</a></li>
