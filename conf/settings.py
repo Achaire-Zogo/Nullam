@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    ''
     'nullam.apps.NullamConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',

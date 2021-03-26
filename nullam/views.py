@@ -8,7 +8,7 @@ def index(request):
     event = Event.objects.all()
     page = request.GET.get('page', 1)
     paginator = Paginator(event, 6)
-    try:
+    try: 
         event = paginator.page(page)
     except PageNotAnInteger:
         event = paginator.page(1)
