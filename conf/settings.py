@@ -34,12 +34,20 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'nullam.apps.NullamConfig',
     'accounts.apps.AccountsConfig',
+    'events.apps.EventsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #autre import
+    'mapbox_location_field',
+    "bootstrap4",
+    'ckeditor',
+    'ckeditor_uploader',
+    'betterforms',
 ]
 
 MIDDLEWARE = [
@@ -120,7 +128,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+# Mapbox key define
+MAPBOX_KEY = "pk.eyJ1IjoibWlnaHR5c2hhcmt5IiwiYSI6ImNqd2duaW4wMzBhcWI0M3F1MTRvbHB0dWcifQ.1sDAD43q0ktK1Sr374xGfw"
 
+# Crsipy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Ckeditor config
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}
 
 
 MEDIA_URL = '/media/'
@@ -132,4 +154,4 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT= os.path.join(BASE_DIR, 'assets')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_root')
