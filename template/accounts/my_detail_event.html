@@ -1,0 +1,150 @@
+{% extends 'accounts/dashmain.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    .img-fluid{
+        margin: 5%;
+        width: 150px;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <!-- here goes the image -->
+            <img class="img-fluid" src={{event.images_baniere.url}} alt="">
+            <img class="img-fluid" src={{event.images_2.url}} alt="">
+        </div>
+
+        <div class="col-md-8">
+            <!-- here goes the details of the events -->
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>start_date</th>
+                        <th>end_date</th>
+                        <th>Edit_events</th>
+                        <th>Delete_event</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <a class="btn" href="#">
+                        <tr>
+                            <td>{{event.name}}</td>
+                            <td>{{event.location}}</td>
+                            <td>{{event.event_start_date}}</td>
+                            <td>{{event.event_end_date}}</td>
+                             <!-- delete and edit buttons -->
+                            <td><a class="btn btn-sm btn-info" href="#">Edit event</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="#">Delete event</a></td>
+                        </tr>
+                    </a>
+                </tbody>
+            </table>
+            <h2>Description </h2>
+            <h4>{{event.description}}</h4>
+        </div>
+    </div>
+
+    <!-- Ticket Information -->
+    <h1 class="text-center">Ticket Inforamtion</h1>
+    <div class="label">
+        <a href="{% url 'events:add-ticket' event.slug %}" class="btn btn-md btn-primary">Add Ticket</a>
+    </div>
+    <div class="row">
+        
+            <div class="col-md-4">
+                <div class="lead">
+                    <form class="px-4 py-3">
+                        <div class="field"> 
+                            <div class="label">Number of attended place</div>
+                            {{form.maximum_attende}}                           
+                        </div>
+                        <div class="field"> 
+                        <div class="label">Price of Ticket</div>
+                        {{form.price}}                           
+                    </div>
+                        <div class="field">
+                            <div class="label">Entries Cathegories</div>
+                            {{form.ticket_cathegories}}
+                        </div>
+                        <div class="field">
+                        <div class="label">Start Date for sell</div>
+                        {{form.ticket_start_date_sell}}
+                        </div>
+                        
+                        <!--Location-->
+                        <div class="field">
+                        <div class="label">Start Time for sell</div>
+                        {{form.ticket_start_time_sell}}
+                        </div>
+            
+                        <!--Start date-->
+                        <div class="field">
+                        <div class="label">End Date of Sell</div>
+                        {{form.ticket_end_date_sell}}
+                        </div>
+            
+                        <!--start time-->
+                        <div class="field">
+                        <div class="label">End time of Sell</div>
+                        {{form.ticket_end_time_sell}}
+                        </div>
+            
+                        <!--End date-->
+                        <div class="field">
+                        <div class="label">Minimun of Ticket</div>
+                        {{form.min_ticket}}
+                        </div>
+            
+                        <!--End time-->
+                        <div class="field">
+                        <div class="label">Maximun of ticket</div>
+                        {{form.max_ticket}}
+                        </div>
+                        <br>
+                        <br>
+                        <div class="field">
+                            <button class="firstNext next" type="submit">save and continus</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% if tickets %}
+            <div class="col-md-8">
+                <!-- here goes the details of the ticket -->
+                <table class="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>number of places expected</th>
+                            <th>Price of Ticket</th>
+                            <th>Entries Cathegories</th>
+                            <th>Edit_events</th>
+                            <th>Delete_event</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tick in tickets %}
+                                <tr>
+                                    <td>{{tick.maximum_attende}}</td>
+                                    <td>{{tick.price}}</td>
+                                    <td>{{tick.ticket_cathegories}}</td>
+                                    <td><a class="btn btn-sm btn-info" href="#">Edit event</a></td>
+                                    <td><a class="btn btn-sm btn-danger" href="#">Delete event</a></td>
+                                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>You don't have any ticket yet...</p>
+         {% endif %}
+
+
+    </div>
+</div>
+{% endblock content %}

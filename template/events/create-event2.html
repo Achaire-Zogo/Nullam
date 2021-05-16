@@ -1,0 +1,314 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<head>
+    <link type="text/css" href="{% static 'css/bain.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</head>
+ <style> 
+    body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* min-height: 100vh; */
+  overflow: hidden;
+  background: url("bg.png"), -webkit-linear-gradient(bottom, #0250c5, #3fd464);
+}
+::selection{
+  color: #fff;
+  background: #d43f8d;
+}
+.container{
+  width: 700px;
+  background: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 50px 35px 10px 35px;
+}
+.container header{
+  font-size: 35px;
+  font-weight: 600;
+  margin: 0 0 30px 0;
+}
+.container .form-outer{
+  width: 100%;
+  overflow: hidden;
+}
+.container .form-outer form{
+  display: flex;
+  width: 400%;
+}
+.form-outer form .page{
+  width: 25%;
+  transition: margin-left 0.3s ease-in-out;
+}
+.form-outer form .page .title{
+  text-align: left;
+  font-size: 25px;
+  font-weight: 500;
+}
+.form-outer form .page .field{
+  width: 500px;
+  height: 45px; 
+  margin: 45px 0;
+  padding-left: 50px;
+  display: flex;
+  position: relative;
+}
+
+form .page .field .label{
+  position: absolute;
+  top: -30px;
+  font-weight: 500;
+}
+
+form .page .field input{
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding-left: 15px;
+  font-size: 18px;
+}
+
+form .page .field button{
+  width: 100%;
+  height: calc(100% + 5px);
+  border: none;
+  background: #5fcf80;
+  margin-top: -20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.5s ease;
+}
+form .page .field button:hover{
+  background: rgb(3, 0, 8);
+}
+
+form .page .btns button{
+  margin-top: -20px!important;
+}
+
+form .page .btns button.prev{
+  margin-right: 3px;
+  font-size: 17px;
+}
+form .page .btns button.next{
+  margin-left: 3px;
+}
+
+.container .progress-bar{
+  display: flex;
+  margin: 40px 0;
+  user-select: none;
+}
+.container .progress-bar .step{
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+.container .progress-bar .step p{
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 8px;
+}
+.progress-bar .step .bullet{
+  height: 25px;
+  width: 25px;
+  border: 2px solid #000;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  transition: 0.2s;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 25px;
+}
+.progress-bar .step .bullet.active{
+  border-color: #d43f8d;
+  background: #d43f8d;
+}
+.progress-bar .step .bullet span{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.progress-bar .step .bullet.active span{
+  display: none;
+}
+.progress-bar .step .bullet:before,
+.progress-bar .step .bullet:after{
+  position: absolute;
+  content: '';
+  bottom: 11px;
+    right: -148px;
+    height: 5px;
+    width: 146px;
+  background: #262626;
+}
+.progress-bar .step .bullet.active:after{
+  background: #d43f8d;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: animate 0.3s linear forwards;
+}
+@keyframes animate {
+  100%{
+    transform: scaleX(1);
+  }
+}
+.progress-bar .step:last-child .bullet:before,
+.progress-bar .step:last-child .bullet:after{
+  display: none;
+}
+.progress-bar .step p.active{
+  color: #d43f8d;
+  transition: 0.2s linear;
+}
+.progress-bar .step .check{
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  font-size: 15px;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.progress-bar .step .check.active{
+  display: block;
+  color: #fff;
+}
+
+</style>
+
+
+    <body>
+        <div class="container">
+            <header>Create Event</header>
+            <div class="progress-bar">
+                <div class="step">
+                    <p>Start</p>
+                    <div class="bullet">
+                        <span>1</span>
+                    </div>
+                    <div class="check fas fa-check"></div>
+                </div>
+                <div class="step">
+                    <p>Cathegory</p>
+                    <div class="bullet">
+                        <span>2</span>
+                    </div>
+                    <div class="check fas fa-check"></div>
+                </div>
+                <div class="step">
+                    <p>Description</p>
+                    <div class="bullet">
+                        <span>3</span>
+                    </div>
+                    <div class="check fas fa-check"></div>
+                </div>
+                <div class="step">
+                    <p>Submit</p>
+                    <div class="bullet">
+                        <span>4</span>
+                    </div>
+                    <div class="check fas fa-check"></div>
+                </div>
+            </div>
+            <div class="form-outer">
+                <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="page slide-page">
+                        <div class="title">Basic Information:</div>
+                        <div class="field">
+                            <div class="label">Name of Event</div>
+                            {{form.name}}
+                        </div>
+                        <div class="field"> 
+                            <div class="label">Name  of organisator</div>
+                            {{form.user}}                           
+                        </div>
+                        <div class="field">
+                            <div class="label">Input Tags</div>
+                            {{form.tag}}
+                        </div>
+                        <div class="field">
+                            <button class="firstNext next">Next</button>
+                        </div> 
+                    </div>
+
+                    <!--segong page-->
+                    <div class="page">
+                        <div class="title">Relative Informations</div>
+                        <div class="field">
+                            <div class="label">Cathegory</div>
+                            {{form.category}}
+                        </div>
+                        <div class="field"> 
+                            <div class="label">Location</div>
+                            {{form.location}}
+                        </div>
+                        <div class="field">
+                            <div class="label">Images Presentation</div>
+                            {{form.images_baniere}}
+                        </div>
+                        <div class="field btns">
+                            <button class="prev-1 prev">Previous</button>
+                            <button class="next-1 next">Next</button>
+                        </div>
+                    </div>
+
+                    <!--Third page-->
+                    <div class="page desc">
+                        <div class="title">Description Informations :</div>
+                        <div class="form-group" >
+                            <div class="label">Description</div>
+                            {{form.description}}
+                        </div>
+                        
+                        <div class="field"  style="margin: 0% 0;"> 
+                            <div class="label">Other Images</div>                           
+                            {{form.images_2}}
+                        </div>
+                        <div class="field btns"> 
+                            <button class="prev-2 prev">Previous</button>
+                            <button class="next-2 next">Next</button>
+                        </div>
+                    </div>
+
+                    <!--Forth page-->
+                    <div class="page">
+                        <div class="title">Dates Informations</div>
+                        <div class="field">
+                            <div class="label">Event start date</div>
+                            {{form.event_start_date}}
+                        </div>
+                        <div class="field"> 
+                            <div class="label">event start time</div>
+                            {{form.event_start_time}}
+                        </div>
+                        <div class="field">
+                            <div class="label">Event end date</div>
+                            {{form.event_end_date}}
+                        </div>
+                        <div class="field">
+                            <div class="label">Event end time</div>
+                            {{form.event_end_time}}
+                        </div>
+                        <div class="field btns">
+                            <button class="prev-3 prev">Previous</button>
+                            <button class="Submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                {{ form.media }}
+            </div>
+             
+        </div>
+        <script src="{% static 'js/ce.js' %}"></script>
+    </body>
+

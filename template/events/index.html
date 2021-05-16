@@ -10,7 +10,7 @@
   <section id="hero" class="d-flex justify-content-center align-items-center">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>start making your event,<br>Stop waiste your time</h1>
-      <h2>We are <span class="typed" data-typed-items="the best website , the best team, the best leadership, Every thing"></span> </h2>
+      <h2>We are <span class="typed" data-typed-items="the best website , the best team, the best leadership, Every thing">star-up</span> </h2>
       <a href="#" class="btn-get-started">Get Started</a>
     </div>
   </section><!-- End Hero -->
@@ -68,11 +68,11 @@
     
             <div class="row" data-aos="zoom-in" data-aos-delay="100">
               {% for p in allevents %}
-              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+              <div class="col-lg-3 col-md-7 d-flex align-items-stretch" >
                 <div class="course-item" >
                 <img src={{p.images_baniere.url}} class="img-fluid" alt="..." style="width: 100%; height: 200px;" >
-                  <div class="course-content" style="max-height: 120px; max-width: 80px;">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="course-content">
+                    <div class="d-flex justify-content-between align-items-center ">
                       <h4>{{p.name}}</h4>
                       <p class="price">{{p.price}}</p>
                     </div>
@@ -82,7 +82,7 @@
                     <div class="trainer d-flex justify-content-between align-items-center">
                       <div class="trainer-profile d-flex align-items-center">
                         <img src={{p.images_baniere.url}} class="img-fluid" alt="">
-                        <span>promotor {{p.user}}</span>
+                        <span>{{p.user}}</span>
                       </div>
                       <div class="trainer-rank d-flex align-items-center">
                         <i class="bx bx-user"></i>&nbsp;50
@@ -100,9 +100,10 @@
     
           </div>
         </section><!-- End Popular Courses Section -->
-    
-            <!--Pagination-->
-    <nav class="d-flex justify-content-center wow fadeIn">
+</main>
+     <!--Pagination-->
+
+    <nav class="d-flex justify-content-center wow fadeIn" >
       <ul class="pagination pg-blue">
 
         <!--Arrow left-->
@@ -142,7 +143,7 @@
     <!--Pagination-->
 
   </div>
-     
+     <div>
         {% if event.has_other_pages %}
         <ul class="pagination" style="margin-left: 377px;
           display: flex;
@@ -172,5 +173,6 @@
       {% endif %}
       
     </div>
-  </main>
+    <script src="{% static 'shine/typed.js/typed.min.js' %}"></script>
+ 
 {% endblock content %}

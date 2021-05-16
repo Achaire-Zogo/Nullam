@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, ticket, OrderEvent
+from .models import Event, Ticket, OrderEvent, Cathegorie, Publish
 from mapbox_location_field.admin import MapAdmin
 
 
@@ -8,7 +8,7 @@ from mapbox_location_field.admin import MapAdmin
 
 
 admin.site.register(Event, MapAdmin)
-admin.site.register(ticket)
-
-# admin.site.register(Event)
+admin.site.register(Ticket)
+admin.site.register(Cathegorie)
+admin.site.register(Publish)
 
