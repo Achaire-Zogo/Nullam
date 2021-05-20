@@ -1547,12 +1547,15 @@ section {
   border-radius: 50%;
   text-align: center;
   width: 36px;
-  height: 36px;
-  transition: 0.3s;
+    height: 36px;
+    transition: 0.3s;
 }
 
 #footer .social-links a:hover {
-  background: #3ac162;
-  color: #fff;
-  text-decoration: none;
+    background: #3ac162;
+    color: #fff;
+    text-decoration: none;
 }
+
+
+/* new css */

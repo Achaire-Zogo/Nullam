@@ -92,28 +92,28 @@
           <div class="p-5">
 
             <div class="mb-3">
-              
-              <h1 class="font-weight-bold">{{eve.name}}</h1>
-              
+
+                <h1 class="font-weight-bold">{{ eve.name }}</h1>
+
             </div>
 
-            <p class="lead">
+              <p class="lead">
               <span class="mr-1">
-                start on {{eve.event_start_date}}
+                start on {{ eve.event_start_date }}
               </span>
-            </p>
+              </p>
 
-            <p class="lead font-weight-bold">organise by : {{eve.user}}</p>
+              <p class="lead font-weight-bold">organise by : {{ eve.promotor }}</p>
 
-            <p>share event on </p>
-                <!-- Social icons -->
-    <div class="pb-4">
-        <a href="#" target="_blank">
-          <i class="fab fa-facebook-f mr-3"></i>
-        </a>
-  
-        <a href="#" target="_blank">
-          <i class="fab fa-twitter mr-3"></i>
+              <p>share event on </p>
+              <!-- Social icons -->
+              <div class="pb-4">
+                  <a href="#" target="_blank">
+                      <i class="fab fa-facebook-f mr-3"></i>
+                  </a>
+
+                  <a href="#" target="_blank">
+                      <i class="fab fa-twitter mr-3"></i>
         </a>
   
         <a href="#" target="_blank">
@@ -135,71 +135,49 @@
         <a href="#" target="_blank">
           <i class="fab fa-github mr-3"></i>
         </a>
-  
-        <a href="#" target="_blank">
-          <i class="fab fa-codepen mr-3"></i>
-        </a>
-      </div>
-      <!-- Social icons -->
-      <p class="lead font-weight-bold">event type | {{eve.category}} </p>
-      <hr>
-              <form class="d-flex justify-content-left">
-                <p class="lead font-weight-bold" style="width: 100px">{{eve.price}}</p>
-                <button class="btn btn-success btn-md my-0 p" type="submit">get ticket</button>
-              </form>
-              <div class="lead">
-                <form class="px-4 py-3">
-                  <div class="form-group">
-                    <label for="exampleDropdownFormEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleDropdownFormPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
-                  </div>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                    <label class="form-check-label" for="dropdownCheck">
-                      Remember me
-                    </label>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Sign in</button>
-                </form>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">New around here? Sign up</a>
-                <a class="dropdown-item" href="#">Forgot password?</a>
+
+                  <a href="#" target="_blank">
+                      <i class="fab fa-codepen mr-3"></i>
+                  </a>
               </div>
-           
-
+              <!-- Social icons -->
+              <p class="lead font-weight-bold">event type | {{ eve.category }} </p>
+              <hr>
+              <form class="d-flex justify-content-left">
+                  <p class="lead font-weight-bold" style="width: 100px">{{ eve.price }}</p>
+                  <!-- <button class="btn btn-success btn-md my-0 p" type="submit">get ticket</button> -->
+                  <a class="btn btn-success btn-md my-0 p" href="{% url 'events:paiment' eve.id %}">get ticket</a>
+              </form>
           </div>
-          <!--Content-->
+            <!--Content-->
 
         </div>
-        <!--Grid column-->
+          <!--Grid column-->
 
       </div>
-      <!--Grid row-->
-      
+        <!--Grid row-->
 
-      <hr>
 
-      <!--Grid row-->
-      <div class="row d-flex justify-content-center wow fadeIn">
+        <hr>
 
-        <!--Grid column-->
-        <div class="col-md-6 text-center">
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center wow fadeIn">
 
-          <h4 class="my-4 h4">Additional information</h4>
+            <!--Grid column-->
+            <div class="col-md-6 text-center">
 
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
-            voluptates,
-            quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
+                <h4 class="my-4 h4">Autre evenement qui pourrait vous interresser</h4>
+
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta
+                    odit
+                    voluptates,
+                    quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
+
+            </div>
+            <!--Grid column-->
 
         </div>
-        <!--Grid column-->
-
-      </div>
-      <!--Grid row-->
+        <!--Grid row-->
 
       <!--Grid row-->
       <div class="row wow fadeIn">

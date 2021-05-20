@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #autre import
+    # autre import
+    'crispy_forms',
     'mapbox_location_field',
     "bootstrap4",
     'ckeditor',
@@ -139,9 +140,33 @@ CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': None,
-    },
+    # 'default': {
+    #      'skin': 'moono',
+    #     'toolbar': 'Basic',
+    #     'toolbar_Basic': [
+    #         {'name': 'document', 'items': ['Save', ]},
+    #         {'name': 'basicstyles',
+    #          'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat', '-',
+    #                    'PasteFromWord']},
+
+    #         {'name': 'paragraph',
+    #          'items': ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', 'NumberedList', 'BulletedList',
+    #                    '-', 'Outdent', 'Indent', '-', 'Blockquote', '-',
+    #                    ]},
+    #         {'name': 'insert',
+    #          'items': ['Table', 'HorizontalRule', 'SpecialChar', 'PageBreak']},
+
+    #     ],
+    #     'extraPlugins': ','.join(['sharedspace', 'save', 'autolink', ]),
+    #     'removePlugins': ','.join(['resize', ]),
+    #     'width': '16.0cm',
+    #     'heigth': '16.0cm',
+    #     'sharedSpaces': {
+    #         'top': 'id-top-ckeditor-toolbar',
+    #         'bottom': 'id-bottom-ckeditor-toolbar'
+    #     },
+    #     'contentsCss': 'html, iframe, body {overflow:hidden;outline: none;}',
+    # },
 }
 
 
