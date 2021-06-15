@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>event | Ticket detail</title>
+
+
+    <!-- Material Design Bootstrap -->
+
+
+
+
+    <link href="{% static 'shine/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'shine/remixicon/remixicon.css' %}" rel="stylesheet">
+
+
+
+    <!-- Template Main CSS File -->
+    <link type="text/css" href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'event-detail/css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'event-detail/css/jquery.min.js' %}"></script>
+    <script src="{% static 'event-detail/css/bootstrap.min.js' %}"></script>
+
+</head>
+
+<body style="padding-top: 400px;">
+
+    <div class="container">
+
+
+        <form method="POST" action="{% url 'events:payment_step' %}">
+            {% csrf_token %}
+            <div class="row">
+
+                <aside class="col-lg-6 col-sm-6" style="margin-left: 30%;">
+
+
+                    <article class="card">
+                        <div class="card-body p-5">
+
+                            <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                                        <i class="fa fa-credit-card"></i> Credit Card</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
+                                        <i class="fab fa-paypal"></i> Paypal</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
+                                        <i class="fa fa-university"></i> Another payment</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <ul class="nav bg-light">
+                                    <li class="subscribe btn btn-primary btn-block">
+                                        <a class="subscribe btn btn-primary btn-block" href="#">
+                                            Recieve Your Ticket By Mail
+                                        </a>
+
+                                    </li>
+                                    <li class="subscribe btn btn-primary btn-block">
+                                        <a class="subscribe btn btn-primary btn-block" href="{% url 'events:recieve' rvce.id %}">
+                                            Download Your Ticket
+                                        </a>
+
+                                    </li>
+                                </ul>
+
+                            </div> <!-- tab-pane.// -->
+
+                        </div> <!-- tab-content .// -->
+
+
+            </div> <!-- card-body.// -->
+            </article> <!-- card.// -->
+
+            </aside> <!-- col.// -->
+
+
+
+            <aside class="col-sm-6">
+
+    </div> <!-- row.// -->
+
+
+    </form>
+    <!--container end.//-->
+
+    
+
+    <script type="text/javascript" src="{% static 'event-detail/js/jquery-3.4.1.min.js' %}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static 'event-detail/js/popper.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'event-detail/js/bootstrap.min.js' %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'event-detail/js/mdb.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/pays.js' %}"></script>
+
+</body>
+
+
+</html>

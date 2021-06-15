@@ -1,4 +1,5 @@
 {% load static %}
+{% load sass_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,79 +13,77 @@
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
- 
- <!-- shine CSS Files --> 
-  <link href="{% static 'shine/bootstrap/css/bootstrap.min.css' %}"rel="stylesheet">
+
+  <!-- shine CSS Files -->
+  <link href="{% static 'shine/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'shine/icofont/icofont.min.css' %}" rel="stylesheet">
   <link href="{% static 'shine/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
   <link href="{% static 'shine/remixicon/remixicon.css' %}" rel="stylesheet">
   <link href="{% static 'shine/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
   <link href="{% static 'shine/animate.css/animate.min.css' %}" rel="stylesheet">
   <link href="{% static 'shine/aos/aos.css' %}" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 
   <!-- Template Main CSS File -->
   <link type="text/css" href="{% static 'css/main.css' %}" rel="stylesheet">
-  
- 
+  <link type="text/css" href="{% static 'css/publish.css' %}" rel="stylesheet">
+  <link type="text/css" href="{% static 'css/new.css' %}" rel="stylesheet">
 
-  
+  <style>
+    body {
+      font-family: Raleway, sans-serif;
+      background-color: rgba(216, 214, 214, 0.842);
+    }
+  </style>
+
+
 </head>
 
 <body>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
+    <div class="container d-flex ">
 
       <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="{% url 'events:home' %}" class="logo mr-auto"><img src="{% static 'logo.png' %}" alt="" class="img-fluid" style="height: 144px;width: 220px;"></a>
-      <div class="container-fluid" id="djief" style="margin-right: 10px;width: 619px;">
-        <form class="d-flex input-group w-auto">
-          <input
-            type="search"
-            class="form-control"
-            placeholder="Search your events"
-            aria-label="Search"
-            style="font-size: 12px;"
-          />
-          <button
-            class="btn btn-light"
-            type="button"
-            data-mdb-ripple-color="dark"  
-            style="font-size: 15px;"
-          >
-            Search
-          </button>
-        </form>
+      <a href="{% url 'events:home' %}" class="logo mr-auto"><img src="{% static 'logo.png' %}" alt="" class="img-fluid"
+          style="height: 60px;width: 220px;"></a>
+
+      <div class="search-box">
+        <button class="btn-search"><i class="fa fa-search"></i></button>
+        <input type="text" class="input-search" placeholder="Type to Search...">
       </div>
-      <nav class="nav-menu d-none d-lg-block">
-        
+
+      <nav class="nav-menu  d-lg-block">
+
         <ul>
           {% if request.user.is_authenticated %}
           <li><a href="{% url 'events:create-event' %}">Create an event</a></li>
           <li><a href="events.html">my events</a></li>
           <li><a href="pricing.html">Contact</a></li>
-          <li class="drop-down"><a href="">Hello, {{request.user.username}}</a>
+          <li class="drop-down"><a href="#">Hello, {{request.user.username}}</a>
             <ul>
               <li><a href="{% url 'dashboard' %}">My space</a></li>
               <li class="drop-down"><a href="#">Deep Drop Down</a>
                 <ul>
                   <li><a href="#">Deep Drop Down 1</a></li>
                   <li><a href="#">Deep Drop Down 2</a></li>
-                    <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
                 </ul>
               </li>
-                <li><a href="#">Drop Down 2</a></li>
-                <li><a href="#">Drop Down 3</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
           </li>
 
           {% else %}
-              <li><a href="{% url 'events:create-event' %}">Create an event</a></li>
-              <li><a href="{% url 'login' %}">Login</a></li>
-              <li><a href="{% url 'register' %}">Signup</a></li>
+          <li><a href="{% url 'events:create-event' %}">Create an event</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Signup</a></li>
           {% endif %}
         </ul>
       </nav><!-- .nav-menu -->
@@ -92,27 +91,35 @@
   </header><!-- End Header -->
 
   {% block content %}
-  
+
   {% endblock content %}
+
   <!-- ======= Footer ======= -->
   <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
 
-      <div class="footer-top">
-          <div class="container">
-              <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>EVENTTICK<span>.</span></h3>
+              <p>
+                Univerty of yaounde I <br>
+                NGOA_EKELE, CMR<br><br>
+                <strong>Phone:</strong> +237 693 00 55 78<br>
+                <strong>Email:</strong> evenetik@gmail.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
 
-                  <div class="col-lg-3 col-md-6 footer-contact">
-                      <h3>Eventick</h3>
-                      <p>
-                          A108 Adam Street <br>
-                          New York, NY 535022<br>
-                          United States <br><br>
-                          <strong>Phone:</strong> +1 5589 55488 55<br>
-                          <strong>Email:</strong> info@example.com<br>
-                      </p>
-                  </div>
-
-                  <div class="col-lg-2 col-md-6 footer-links">
+          <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
@@ -135,35 +142,33 @@
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Join Our Newsletter</h4>
+            <h4>Our Newsletter</h4>
             <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
             <form action="" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
+
           </div>
 
-              </div>
-          </div>
+        </div>
       </div>
+    </div>
 
-      <div class="container d-md-flex py-4">
-
-          <div class="mr-md-auto text-center text-md-left">
-              <div class="copyright">
-                  &copy; Copyright <strong><span>Eventick</span></strong>. All Rights Reserved
-              </div>
-          </div>
-          <div class="social-links text-center text-md-right pt-3 pt-md-0">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          </div>
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Eventtick</span></strong>. All Rights Reserved
       </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">The peaky blinders</a>
+      </div>
+    </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
@@ -179,7 +184,7 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/main.js' %}"></script>
-  
+
 
 </body>
 

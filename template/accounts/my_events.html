@@ -1,0 +1,43 @@
+{% extends 'accounts/dashmain.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="box row">
+    <div class="col-md-8">
+        <h2 class="is-size-3 mb-3">My events</h2>
+        {% if eventss %}
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Figure</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>start date</th>
+                    <th>event_end_date</th>
+                    <th>Edit events</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for event in eventss %}
+                <a class="btn" href="#">
+                    <tr>
+                        <td style="width: 15%; height: 50px;padding: 5px;"><img src="{{event.images_baniere.url}}"></td>
+                        <td>{{event.name}}</td>
+                        <td>{{event.location}}</td>
+                        <td>{{event.event_start_date}}</td>
+                        <td>{{event.event_end_date}}</td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'my/details' event.slug %}">See details</a></td>
+                    </tr>
+                </a>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>You don't have any events yet...</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

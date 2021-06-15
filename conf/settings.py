@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'sass_processor',
     'django.contrib.staticfiles',
 
     # autre import
@@ -59,6 +60,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
 ]
 
 ROOT_URLCONF = 'conf.urls'
@@ -174,9 +181,13 @@ MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 
+
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT= os.path.join(BASE_DIR, 'assets')
+
+SASS_PROCESSOR_ROOT = STATIC_ROOT
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_root')

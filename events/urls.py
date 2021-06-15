@@ -10,10 +10,10 @@ urlpatterns = [
     path('create-event', views.add_Event, name='create-event'),
     path('add-ticket/<slug:slug>/', views.add_Ticket, name='add-ticket'),
     path('details/<int:id>/', views.details, name='details'),
-    path('paiment/<int:id>', views.paiment, name='paiment'),
-    path('checkout/<int:id>', views.checkout, name='checkout'),
-    path('payment/<int:id>', views.payment, name='payment'),
-
-    path('update_ticket', views.updateTicket, name="update_ticket"),
+    path('paiment/<int:id>/', views.paiment, name='paiment'),
+    path('checkout', views.checkout, name='checkout'),
+    path('payment_step', views.payment_step, name='payment_step'),
+    path('facture/', views.facture, name='facture'),
+    path('recieve/<int:id>', views.recieve, name='recieve'),
 
 ]

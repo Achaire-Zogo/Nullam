@@ -1,0 +1,218 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="{% static 'event-detail/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom Style -->
+    <link href="{% static 'css/invoice.css' %}" rel="stylesheet">
+
+
+    <title>Eventick | facture</title>
+</head>
+
+<body>
+    <div class="my-5 page" size="A4">
+        <div class="p-5">
+            <section class="top-content bb d-flex justify-content-between">
+                <div class="logo">
+                    <a href="{% url 'events:home' %}">
+                        <img src="{% static 'images/logo.png' %}" alt="" class="img-fluid">
+                    </a>
+                   
+                </div>
+                <div class="top-left">
+                    <div class="graphic-path">
+                        <p>Event: {{ ps.Event_ticket.event.name}}</p>
+                    </div>
+                    <div class="position-relative">
+                        <p>Promotion. <span>{{ qt.Ticket_quantity }}</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="store-user mt-5">
+                <div class="col-10">
+                    <div class="row bb pb-3">
+                        <div class="col-7">
+                            <p>categorie <h3 id="cate"></h3></p>
+                        
+
+                        </div>
+                        <div class="col-5">
+                            <p >Client:<strong id="clientname"></strong></p>
+                            <h3><strong id="phone"></strong></h3>
+                            <p class="address"> Location: <strong id="cite"></strong> </p>
+                        </div>
+                    </div>
+                    <div class="row extra-info pt-3">
+                        <div class="col-7">
+                            <p>Payment Method: <span>bKash</span></p>
+                            <p>Order Number: <span>#{{ pk }}</span></p>
+                        </div>
+                        <div class="col-5">
+                            <p>Deliver Date: <span>10-04.2021</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="product-area mt-4">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>Event Qr code</td>
+                            <td>Price</td>
+                            <td>Quantity</td>
+                            <td>Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="media">
+                                    <img class="mr-3 img-fluid" src="{{ qr.url|safe }}"
+                                        style="width: 100px;height: 100px;">
+                                    <div class="media-body">
+                                        <p class="mt-0 title"></p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ price }}XAF</td>
+                            <td>{{qt}}</td>
+                            <td>{{ total }}XAF</td>
+                        </tr>
+                        <tr>
+                            <td>
+                               
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="balance-info">
+                <div class="row">
+                    <div class="col-8">
+                        <p class="m-0 font-weight-bold"> Note: </p>
+                        <p>La validation de votre billet se ferra a travers le scan du qr-code qui est graver dessus
+                            Donc tache de ne pas le jetter.</p>
+                    </div>
+                    <div class="col-4">
+                        <table class="table border-0 table-hover">
+                            <tr>
+                                <td>Sub Total:</td>
+                                <td>{{ total }}XAF</td>
+                            </tr>
+                            <tr>
+                                <td>Tax:</td>
+                                <td>0XAF</td>
+                            </tr>
+                            <tr>
+                                <td>Deliver:</td>
+                                <td>0XAF</td>
+                            </tr>
+                            <tfoot>
+                                <tr>
+                                    <td>Total:</td>
+                                    <td>{{ total}}XAF</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!-- Signature -->
+                        <div class="col-12">
+                            <img src="{% static 'images/signature.png' %}" class="img-fluid" alt="">
+                            <p class="text-center m-0"> Director Signature </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cart BG -->
+           
+
+            <footer>
+                <hr>
+                <p class="m-0 text-center">
+                    View THis Invoice Online At - <a href="#!"> events/nullam.com/#id_tansaction </a>
+                </p>
+                <div class="social pt-3">
+                    <span class="pr-2">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>0123456789</span>
+                    </span>
+                    <span class="pr-2">
+                        <i class="fas fa-envelope"></i>
+                        <span>eve@gmail.com</span>
+                    </span>
+                    <span class="pr-2">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>/eventTick.7264</span>
+                    </span>
+                    <span class="pr-2">
+                        <i class="fab fa-youtube"></i>
+                        <span>/EventTick</span>
+                    </span>
+                    <span class="pr-2">
+                        <i class="fab fa-github"></i>
+                        <span>/example</span>
+                    </span>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+    <script>
+        window.addEventListener('load', () => {
+    
+          // Via Query parameters - GET
+          /* const params = (new URL(document.location)).searchParams;
+          const name = params.get('name');
+          const surname = params.get('surname'); */
+    
+          // Via local Storage
+          /* const name = localStorage.getItem('NAME');
+          const surname = localStorage.getItem('SURNAME'); */
+    
+        //   var quantity = sessionStorage.getItem('QUANTITE');
+         var phone = sessionStorage.getItem('TELEPHONE');
+        //   var email = sessionStorage.getItem('EMAIL');
+          var categorie = sessionStorage.getItem('CATEGORIE');
+          var name = sessionStorage.getItem('NAME');
+          var city = sessionStorage.getItem('CITY');
+    
+        //   document.getElementById('qte').value = quantity;
+        //   document.getElementById('ttl').value = total;
+          document.getElementById('phone').innerHTML = phone;
+          document.getElementById('cate').innerHTML = categorie;
+          document.getElementById('clientname').innerHTML= name;
+          document.getElementById('cite').innerHTML = city;
+    
+        })
+    
+      </script>
+    
+
+
+
+
+
+
+</body>
+
+</html>

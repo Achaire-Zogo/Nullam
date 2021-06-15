@@ -91,7 +91,7 @@ class Ticket(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     min_ticket = models.IntegerField(default=1)
     max_ticket = models.IntegerField(default=10)
-    qr_code = models.ImageField(upload_to='qr_codes', blank=True)
+    
 
     class Meta:
         ordering = ['-date_added']
@@ -99,24 +99,16 @@ class Ticket(models.Model):
     def __str__(self):
         return str(self.ticket_cathegories)
 
-    def save(self, *args, **kwargs):
-        qrcode_img = qrcode.make(self.ticket_cathegories)
-        canvas = Image.new('RGB', (290, 290), 'white')
-        draw = ImageDraw.Draw(canvas)
-        canvas.paste(qrcode_img)
-        fname = f'qr_code-{self.ticket_cathegories}' + '.png'
-        buffer = BytesIO()
-        canvas.save(buffer, 'PNG')
-        self.qr_code.save(fname, File(buffer), save=False)
-        canvas.close()
-        super().save(*args, **kwargs)
+    
 
 
 class Publish(models.Model):
-    event = models.ForeignKey(Event, related_name='publishs', on_delete=models.CASCADE)
-    promotor = models.ForeignKey(Promotor, related_name='publishs', on_delete=models.CASCADE)
-    ticket = models.ForeignKey(Ticket, related_name='publishs', on_delete=models.CASCADE)
-    publish_date = models.DateField(null=True, blank=True)  # date de publication
+    ticket = models.ForeignKey(Ticket, related_name='publishs',null=True, on_delete=models.CASCADE)
+    publish_date = models.DateTimeField(auto_now_add=True)  # date de publication
+
+
+    def __str__(self):
+        return str(self.ticket)
 
 
 class Order(models.Model):
@@ -134,7 +126,6 @@ class OrderEvent(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE, null=True, blank=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
-    date_added = models.DateTimeField(auto_now_add=True)
 
     @property
     def get_total(self):
@@ -153,3 +144,27 @@ class ShippinrAddress(models.Model):
 
     def __str__(self):
         return self.address
+
+
+class AchatTicket(models.Model):
+    Event_ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE, null=True, blank=True)
+    Ticket_quantity = models.IntegerField(default=0, null=True, blank=True)
+    Ticket_date_achat = models.DateTimeField(auto_now_add=True)
+    Email_customer = models.EmailField(max_length=255,null=True)
+    Phone_number = models.CharField(max_length=255,null=True)
+    Total_amount = models.IntegerField(default=0, null=True, blank=True)
+    qr_code = models.ImageField(upload_to='qr_codes', blank=True)
+    def __str__(self):
+        return str(self.Email_customer)
+
+    def save(self, *args, **kwargs):
+        qrcode_img = qrcode.make(self.Email_customer)
+        canvas = Image.new('RGB', (290, 290), 'white')
+        draw = ImageDraw.Draw(canvas)
+        canvas.paste(qrcode_img)
+        fname = f'qr_code-{self.Email_customer}' + '.png'
+        buffer = BytesIO()
+        canvas.save(buffer, 'PNG')
+        self.qr_code.save(fname, File(buffer), save=False)
+        canvas.close()
+        super().save(*args, **kwargs)    

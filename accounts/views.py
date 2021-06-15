@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 # import db
 from .models import Promotor
-from events.models import Event, Ticket
+from events.models import Event, Ticket, Publish
 from events.views import add_Ticket
 from events.forms import TicketAddForm
 from django.contrib import messages
@@ -58,6 +58,23 @@ def register(request):
         return render(request, 'accounts/register.html', context)
 
 
+
+
+@login_required(login_url='login')       
+def addpublish(request,id=None):
+    val = request.POST.get("typ")
+
+    a = Ticket.objects.get(ticket_cathegories=val)
+    b = Publish()  
+    b.ticket = a
+    b.save()
+    print(b)
+    return render(request, 'accounts/dashboard.html')
+
+
+
+
+
 @login_required(login_url='login')
 def my_event(request):
     promotor = request.user.promotor
@@ -85,8 +102,13 @@ def mydetails(request, slug):
     promotor = request.user.promotor
 
     tickets = Ticket.objects.filter(event=event)
-
+    
+    a = tickets[0]
+   
+    
+        
+    
     context = {
-        "event": event, 'promotor': promotor, 'tickets': tickets
+        "event": event, 'promotor': promotor, 'a': a,'tickets':tickets
     }
     return render(request, 'accounts/my_detail_event.html', context)
