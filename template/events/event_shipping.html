@@ -1,0 +1,238 @@
+{% extends 'events/event_base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+
+    <div class="page-checkout">
+        <div class="row">
+            {% if messages %}
+
+                    {% for message in messages %}
+                    <div class="alert alert-info">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+
+                    {% endif %}
+            <form method="POST" action="{% url 'events:event_confirmation_pay' id %}?name={{name}}&categorie={{ val.ticket.ticket_cathegories }}">
+                        {% csrf_token %}
+            <div class="checkout-left col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <p>Returning customer? <a class="login" href="#">Click here to login</a>.</p>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                    href="#collapseTwo">
+                                    {{name}}
+                                </a>
+                            </h4>
+                        </div>
+                        <br>
+                        <div class="product-quantity">
+                            <span class="control-label"><strong>Phone Number:</strong></span>
+                            <div class="qty ">
+                                <div class="input-group">
+                                    <input type="tel" class="btn-block" style="width: 80%;" name="phone"
+                                        pattern="+237^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
+                                         id="phone" required>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
+                                    href="#collapseThree">
+                                    Payment
+                                </a>
+                            </h4>
+                            <div class="panel-body">
+                                <table class="cart-summary table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="width-80 text-center">Image</th>
+                                            <th>Name</th>
+                                            <th class="width-100 text-center">Categorie</th>
+                                            <th class="width-100 text-center">Unit price</th>
+                                            <th class="width-100 text-center">Qty</th>
+                                            <th class="width-100 text-center">Total</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="">
+                                                    <img width="300px" alt="Product Image" class="img-responsive"
+                                                        src="{{ event.name.images_baniere.url }}">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="product-name"><input
+                                                        style="border: cornsilk; width: 90px;" type="text" name="names"
+                                                        id="na" value="{{ event.name.name }}" disabled></a>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="categorie" id="categorie"
+                                                    value="{{val.ticket.ticket_cathegories}}"
+                                                    style="border: cornsilk; width: 90px;" disabled>
+                                            </td>
+                                            <td class="text-center">
+                                                <input style="border: cornsilk; width: 90px;" type="number" id="price"
+                                                    value="{{val.ticket.price}}" name="price">
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="product-quantity">
+
+                                                    <div class="qty">
+                                                        <div class="input-group" onclick="get_total()"
+                                                            oninput="get_total()">
+                                                            <input type="number" min="1" value="1" style="width: 60px;"
+                                                                id="qte" style="border: cornsilk;"> X
+
+                                                            <span class="adjust-qty">
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <input type="number" id="total" name="total"
+                                                    value="{{val.ticket.price}}" style="border: cornsilk; width: 90px;"
+                                                    disabled>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="collapseThree" class="accordion-body collapse" style="height: 0px;">
+
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" value="{{request.user.email}}" name="us" id="email">
+                <input type="hidden" value="{{val.id}}" name="idtick">
+                <input type="text" hidden value="{{val.ticket.ticket_cathegories}}" id="cat" name="cate">
+
+                <input type="hidden" id="ttl" name="tt">
+                <input type="hidden" id="qtee" name="qt">
+                <input type="hidden" name="useramount"  value="{{promotor.amount}}">
+
+                <div class="pull-right">
+                    
+                        <input type="text" value="0" id="code" name="code" hidden>
+                        <button type="submit" onclick="handleSubmit()" class="btn btn-primary">Place Order</button>
+                    
+                </div>
+            </div>
+
+
+            <div class="checkout-right col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <h4 class="title">Recapitulatif</h4>
+                <table class="table cart-total">
+                    <tbody>
+                        <tr class="cart-subtotal">
+                            <th>
+                                <strong>Quantity total</strong>
+                            </th>
+                            <td>
+                                <strong><span class="amount"><strong><input type="number" id="totalqte" name="totaltick"
+                                                value="1"
+                                                style="width: 50px; border: aliceblue;"></strong></span></strong>
+                            </td>
+                        </tr>
+                        <tr class="total">
+                            <th>
+                                <strong>Order Total</strong>
+                            </th>
+                            <td>
+                                <strong><span class="amount">Frcfa <input type="number" name="totalamount" id="check"
+                                            value="{{val.ticket.price}}"
+                                            style="border: cornsilk; width: 90px;"></span></strong>
+                                            
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+<script type="text/javascript">
+    function get_total() {
+
+        var price_ticket = document.getElementById("price").value;
+        var ptk = parseFloat(price_ticket);
+
+        var ticket_quantity = document.getElementById("qte").value;
+        var tq = parseFloat(ticket_quantity);
+
+        var total = ptk * tq;
+
+
+        document.getElementById("total").value = total;
+        document.getElementById("check").value = total;
+        document.getElementById("totalqte").value = tq;
+
+
+    }
+
+    function handleSubmit() {
+        var total = document.getElementById("check").value;
+        var quantite = document.getElementById("totalqte").value;
+        var categorie = document.getElementById("cat").value;
+        var name = document.getElementById("na").value;
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("phone").value;
+        var prix = document.getElementById("price").value;
+        
+
+        var code = Math.floor(Math.random()*100000466);
+        document.getElementById("code").value = code;
+
+        var rec = document.getElementById("code").value;
+
+
+        sessionStorage.setItem("RECUPERE", rec);
+        sessionStorage.setItem("PRICE", prix);
+        sessionStorage.setItem("TOTAL", total);
+        sessionStorage.setItem("PHONE", phone);
+        sessionStorage.setItem("EMAIL", email);
+        sessionStorage.setItem("CODE", code);
+        sessionStorage.setItem("Name", name);
+        sessionStorage.setItem("CATEGORY", categorie);
+        sessionStorage.setItem("QUANTITE", quantite);
+        return;
+    }
+
+    
+
+    function upl() {
+        window.addEventListener('load', () => {
+
+
+
+            var quantity = sessionStorage.getItem('QUANTITE');
+            var total = sessionStorage.getItem('TOTAL');
+
+
+            document.getElementById('qtee').value = quantity;
+            document.getElementById('ttl').value = total;
+        })
+    }
+</script>
+{% endblock content %}

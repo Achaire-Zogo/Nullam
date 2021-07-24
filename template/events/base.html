@@ -1,5 +1,4 @@
 {% load static %}
-{% load sass_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +61,7 @@
         <ul>
           {% if request.user.is_authenticated %}
           <li><a href="{% url 'events:create-event' %}">Create an event</a></li>
-          <li><a href="events.html">my events</a></li>
+          <li><a href="#">my events</a></li>
           <li><a href="pricing.html">Contact</a></li>
           <li class="drop-down"><a href="#">Hello, {{request.user.username}}</a>
             <ul>

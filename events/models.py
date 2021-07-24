@@ -100,7 +100,22 @@ class Ticket(models.Model):
         return str(self.ticket_cathegories)
 
     
+class PublishEvent(models.Model):
+    name = models.ForeignKey(Event, related_name='publ', null=True, on_delete=models.CASCADE)
+    promotor = models.ForeignKey(Promotor, related_name='published', on_delete=models.CASCADE)
+    publish_date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return str(self.name)
 
+class TicketSale(models.Model):
+    name = models.ForeignKey(Event, related_name='publi', null=True, on_delete=models.CASCADE)
+    ticket = models.ForeignKey(Ticket, related_name='tick', null=True, on_delete=models.CASCADE)
+    promotor = models.ForeignKey(Promotor, related_name='pu', on_delete=models.CASCADE)
+    publish_sale_date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return str(self.ticket)
 
 class Publish(models.Model):
     ticket = models.ForeignKey(Ticket, related_name='publishs',null=True, on_delete=models.CASCADE)
@@ -158,11 +173,12 @@ class AchatTicket(models.Model):
         return str(self.Email_customer)
 
     def save(self, *args, **kwargs):
-        qrcode_img = qrcode.make(self.Email_customer)
-        canvas = Image.new('RGB', (290, 290), 'white')
+        rec = 'Categorie:'+str(self.Event_ticket)+'quantite:'+str(self.Ticket_quantity)+'Tel:'+str(self.Phone_number)
+        qrcode_img = qrcode.make(rec)
+        canvas = Image.new('RGB', (490, 490), 'white')
         draw = ImageDraw.Draw(canvas)
         canvas.paste(qrcode_img)
-        fname = f'qr_code-{self.Email_customer}' + '.png'
+        fname = f'qr_code-{rec}' + '.png'
         buffer = BytesIO()
         canvas.save(buffer, 'PNG')
         self.qr_code.save(fname, File(buffer), save=False)

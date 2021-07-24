@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Email</label>
+    {{ticket}}
+    <br>
+    <br>
+    <label>Quantite :</label>
+    {{ticket.Ticket_quantity}}
+    <br>
+    <br>
+    <label>Date d'achat</label>
+    {{ticket.Ticket_date_achat}}
+    <br>
+    <br>
+    <label>Phone_number</label>
+    {{ticket.Phone_number}}
+    <br>
+    <br>
+    <br>
+    <img src="{{ticket.qr_code.path}}">
+</body>
+</html>

@@ -2,6 +2,14 @@ from django import forms
 from .models import Event, Ticket,AchatTicket
 
 # creating the forms
+
+CATEGORY_CHOICES = [
+    ('action', 'Action'),
+    ('drama', 'DRAMA'),
+    ('comedy', 'COMEDY'),
+    ('romance', 'ROMANCE'),
+]
+
 class EventAddForm(forms.ModelForm):
     class Meta:
         model = Event
@@ -21,6 +29,7 @@ class EventAddForm(forms.ModelForm):
             'event_end_date': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
             'event_start_time': forms.TextInput(attrs={'class': 'form-control', 'type': 'time'}),
             'event_end_time': forms.TextInput(attrs={'class': 'form-control', 'type': 'time'}),
+            'description': forms.TextInput(attrs={'class': 'textarea_editor form-control border-radius-0'})
         }
 
 class TicketAddForm(forms.ModelForm):

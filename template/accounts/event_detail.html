@@ -1,0 +1,477 @@
+{% extends 'accounts/base.html' %}
+{% block breadcrumb %}DEtails Page{% endblock breadcrumb %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+
+
+	<div class="main-container">
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="title">
+								<h4>Details Of Your Event</h4>
+							</div>
+							<nav aria-label="breadcrumb" role="navigation">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="{% url 'events:event_home' %}">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Details of event And Ticket for selling</li>
+								</ol>
+							</nav>
+						</div>
+                        {% include "accounts/_alerts.html" %}
+                        {% if public %}
+                            <div class="col-md-6 col-sm-12 text-right">
+                                <div class="dropdown">
+                                    <p><strong>Your Event is Published</strong></p>
+									<p class="btn btn-primary">&nbsp;&nbsp;{{promotor.amount}} Frfca</p>
+                                    <form method="POST" action="{% url 'publish' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{event.name}}" name="name">
+                                        <input class="btn btn-danger"   value="Remove Your event from Public">
+                                    </form>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="col-md-6 col-sm-12 text-right">
+									
+                                <div class="dropdown">
+                                    <form method="POST" action="{% url 'publish' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{event.name}}" name="name">
+                                        <input class="btn btn-success" type="submit"  value="Publish Your Event">
+										<p class="btn btn-primary">&nbsp;&nbsp;{{promotor.amount}} Frfca</p>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
+						<div class="pd-20 card-box height-100-p">
+							<div class="profile-photo">
+								<a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i class="fa fa-pencil"></i></a>
+								<img src="{{event.images_baniere.url}}" alt="" class="">
+								<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+										<div class="modal-content">
+											<div class="modal-body pd-5">
+												<div class="img-container">
+													<img id="image" src="{{event.images_baniere.url}}" alt="Picture">
+												</div>
+											</div>
+											<div class="modal-footer">
+												<input type="submit" value="Update" class="btn btn-primary">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<h5 class="text-center h5 mb-0">{{event.name}}</h5>
+							
+							<div class="profile-info">
+								<h5 class="mb-20 h5 text-blue">Event Information</h5>
+								<ul>
+									<li>
+										<span>Location:</span>
+										{{event.location}}
+									</li>
+									<li>
+										<span>Category:</span>
+										{{event.category}}
+									</li>
+									<li>
+										<span>Start Date:</span>
+										{{event.event_start_date}}
+									</li>
+									<li>
+										<span>End Date:</span>
+										{{event.event_end_date}}
+										
+									</li>
+                                    <li>
+										<span>Start Time:</span>
+										{{event.event_start_time}}
+									</li>
+                                    <li>
+										<span>End Time:</span>
+										{{event.event_end_time}}
+									</li>
+								</ul>
+							</div>
+							<div class="profile-social">
+								<h5 class="mb-20 h5 text-blue">Social Links</h5>
+								<ul class="clearfix">
+									<li><a href="#" class="btn" data-bgcolor="#3b5998" data-color="#ffffff"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#" class="btn" data-bgcolor="#1da1f2" data-color="#ffffff"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#" class="btn" data-bgcolor="#007bb5" data-color="#ffffff"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="#" class="btn" data-bgcolor="#f46f30" data-color="#ffffff"><i class="fa fa-instagram"></i></a></li>
+									<li><a href="#" class="btn" data-bgcolor="#3d464d" data-color="#ffffff"><i class="fa fa-dropbox"></i></a></li>
+									<li><a href="#" class="btn" data-bgcolor="#db4437" data-color="#ffffff"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="#" class="btn" data-bgcolor="#bd081c" data-color="#ffffff"><i class="fa fa-pinterest-p"></i></a></li>
+									<li><a href="#" class="btn" data-bgcolor="#00aff0" data-color="#ffffff"><i class="fa fa-skype"></i></a></li>
+								</ul>
+							</div>
+							
+						</div>
+					</div>
+					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+						<div class="card-box height-100-p overflow-hidden">
+							<div class="profile-tab height-100-p">
+								<div class="tab height-100-p">
+									<ul class="nav nav-tabs customtab" role="tablist">
+										
+										<li class="nav-item">
+											<a class="nav-link active" data-toggle="tab" href="#tasks" role="tab">All Ticket</a>
+										</li>
+                                        <li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#timeline" role="tab">Timeline</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#setting" role="tab">Settings</a>
+										</li>
+									</ul>
+									<div class="tab-content">
+										<!-- Timeline Tab start -->
+										<div class="tab-pane fade " id="timeline" role="tabpanel">
+											<div class="pd-20">
+												<div class="profile-timeline">
+													
+												</div>
+											</div>
+										</div>
+										<!-- Timeline Tab End -->
+										<!-- Tasks Tab start -->
+										<div class="tab-pane fade show active" id="tasks" role="tabpanel">
+											<div class="pd-20 profile-task-wrap">
+												<div class="container pd-0">
+													<!-- Open Task start -->
+													<div class="task-title row align-items-center">
+														<div class="col-md-8 col-sm-12">
+															<h5>All Yours Tickets here</h5>
+														</div>
+														<div class="col-md-4 col-sm-12 text-right">
+															<a href="task-add" data-toggle="modal" data-target="#task-add" class="bg-light-blue btn text-blue weight-500"><i class="ion-plus-round"></i> Add Ticket</a>
+														</div>
+													</div>
+													<div class="profile-task-list pb-30">
+														
+                                                        <!-- Simple Datatable start -->
+                                                    <div class="card-box mb-30">
+
+                                                        <div class="pb-20">
+                                                            <!-- alert -->
+                                                            {% include "accounts/_alerts.html" %}
+                                                            {% if tickets %}
+                                                            <table class="data-table table stripe hover nowrap">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="table-plus datatable-nosort">Entries Cathegories</th>
+                                                                        <th >Price of Ticket
+                                                                        </th>
+                                                                        <th>number of places expected</th>
+                                                                        <th class="datatable-nosort">Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {% for tick in tickets %}
+                                                                    <tr>
+                                                                        <td >{{tick.ticket_cathegories}}</td>
+                                                                        <td>{{tick.price}}</td>
+                                                                        <td>{{tick.maximum_attende}}</td>
+                                                                        <td>
+                                                                            <div class="dropdown">
+                                                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                                    href="#" role="button"
+                                                                                    data-toggle="dropdown">
+                                                                                    <i class="dw dw-more"></i>
+                                                                                </a>
+                                                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                                     
+                                                                                        <form method="POST" action="{% url 'onsale' %}">
+                                                                                            {% csrf_token %}
+                                                                                            <input type="hidden" name="cat" value="{{tick.ticket_cathegories}}">
+                                                                                            <input type="hidden" name="name" value="{{event.name}}">
+																							<input type="hidden" name="id" value="{{tick.id}}">
+                                                                                            <button class="dropdown-item"
+                                                                                                type="submit"><i
+                                                                                                    class="dw dw-money"></i>
+                                                                                                put on sell</button>
+                                                                                        </form>
+                                                                                 
+                                                                                    <a class="dropdown-item" href="#"><i
+                                                                                        class="dw dw-delete-1"></i>
+                                                                                    Remove from Sell</a>
+                                                                                    <a class="dropdown-item" href="#"><i
+                                                                                            class="dw dw-edit2"></i>
+                                                                                        Edit</a>
+                                                                                    <a class="dropdown-item" href="#"><i
+                                                                                            class="dw dw-delete-3"></i>
+                                                                                        Delete</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                            {% else %}
+                                                            <p>You don't have any ticket yet...</p>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                    <!-- Simple Datatable End -->
+													</div>
+													<!-- Open Task End -->
+													<!-- Close Task start -->
+													<div class="task-title row align-items-center">
+														<div class="col-md-12 col-sm-12">
+															<h5>Closed Tasks</h5>
+														</div>
+													</div>
+													<div class="profile-task-list close-tasks">
+														<ul>
+														
+														
+														</ul>
+													</div>
+													<!-- Close Task start -->
+													<!-- add task popup start -->
+													<div class="modal fade customscroll" id="task-add" tabindex="-1" role="dialog">
+														<div class="modal-dialog modal-dialog-centered" role="document">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLongTitle">Tasks Add</h5>
+																	<button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Close Modal">
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																</div>
+																<div class="modal-body pd-0">
+																	<div class="task-list-form">
+                                                                        
+																		<ul>
+																			<li>
+																				<form method="POST">
+                                                                                    {% csrf_token %}
+																					<div class="form-group row">
+																						<label class="col-md-4">Number of attended place</label>
+																						<div class="col-md-8">
+																							<input type="text" name="nbrplace" class="form-control" required>
+																						</div>
+																					</div>
+																					<div class="form-group row">
+																						<label class="col-md-4">Price of Ticket</label>
+																						<div class="col-md-8">
+																							<input type="number" min="1" name="price" class="form-control" required> 
+																						</div>
+																					</div>
+																					<div class="form-group row">
+																						<label class="col-md-4">Entries Cathegories</label>
+																						<div class="col-md-8">
+																							<input type="text" name="category" class="form-control" required>
+																						</div>
+																					</div>
+																					<div class="form-group row ">
+																						<label class="col-md-4">Start Date for sell</label>
+																						<div class="col-md-8">
+																							<input type="date" name="sdate" class="form-control " required>
+																						</div>
+																					</div>
+                                                                                    <div class="form-group row ">
+																						<label class="col-md-4">Start Time for sell</label>
+																						<div class="col-md-8">
+																							<input type="time" name="stime" class="form-control" required>
+																						</div>
+																					</div>
+                                                                                    <div class="form-group row ">
+																						<label class="col-md-4">End Date of Sell</label>
+																						<div class="col-md-8">
+																							<input type="date" name="edate" class="form-control" required>
+																						</div>
+																					</div>
+                                                                                    <div class="form-group row ">
+																						<label class="col-md-4">End time of Sell</label>
+																						<div class="col-md-8">
+																							<input type="time" name="etime" class="form-control">
+																						</div>
+																					</div>
+                                                                                    <div class="form-group row ">
+																						<label class="col-md-4">Minimun of Ticket</label>
+																						<div class="col-md-8">
+																							<input type="munber" min="1" name="minticket" class="form-control" required>
+																						</div>
+																					</div>
+                                                                                    <div class="form-group row ">
+																						<label class="col-md-4">Maximun of Ticket</label>
+																						<div class="col-md-8">
+																							<input type="munber" min="1" max="10" name="maxticket" class="form-control" required>
+																						</div>
+																					</div>
+
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="submit" class="btn btn-primary">Add</button>
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                    </div>
+																				</form>
+																			</li>
+																			
+																		</ul>
+																	</div>
+																</div>
+																
+															</div>
+														</div>
+													</div>
+													<!-- add task popup End -->
+												</div>
+											</div>
+										</div>
+										<!-- Tasks Tab End -->
+										<!-- Setting Tab start -->
+										<div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
+											<div class="profile-setting">
+												<form>
+													<ul class="profile-edit-list row">
+														<li class="weight-500 col-md-6">
+															<h4 class="text-blue h5 mb-20">Edit Your Personal Setting</h4>
+															<div class="form-group">
+																<label>Full Name</label>
+																<input class="form-control form-control-lg" type="text">
+															</div>
+															<div class="form-group">
+																<label>Title</label>
+																<input class="form-control form-control-lg" type="text">
+															</div>
+															<div class="form-group">
+																<label>Email</label>
+																<input class="form-control form-control-lg" type="email">
+															</div>
+															<div class="form-group">
+																<label>Date of birth</label>
+																<input class="form-control form-control-lg date-picker" type="text">
+															</div>
+															<div class="form-group">
+																<label>Gender</label>
+																<div class="d-flex">
+																<div class="custom-control custom-radio mb-5 mr-20">
+																	<input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
+																	<label class="custom-control-label weight-400" for="customRadio4">Male</label>
+																</div>
+																<div class="custom-control custom-radio mb-5">
+																	<input type="radio" id="customRadio5" name="customRadio" class="custom-control-input">
+																	<label class="custom-control-label weight-400" for="customRadio5">Female</label>
+																</div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label>Country</label>
+																<select class="selectpicker form-control form-control-lg" data-style="btn-outline-secondary btn-lg" title="Not Chosen">
+																	<option>United States</option>
+																	<option>India</option>
+																	<option>United Kingdom</option>
+																</select>
+															</div>
+															<div class="form-group">
+																<label>State/Province/Region</label>
+																<input class="form-control form-control-lg" type="text">
+															</div>
+															<div class="form-group">
+																<label>Postal Code</label>
+																<input class="form-control form-control-lg" type="text">
+															</div>
+															<div class="form-group">
+																<label>Phone Number</label>
+																<input class="form-control form-control-lg" type="text">
+															</div>
+															<div class="form-group">
+																<label>Address</label>
+																<textarea class="form-control"></textarea>
+															</div>
+															<div class="form-group">
+																<label>Visa Card Number</label>
+																<input class="form-control form-control-lg" type="text">
+															</div>
+															<div class="form-group">
+																<label>Paypal ID</label>
+																<input class="form-control form-control-lg" type="text">
+															</div>
+															<div class="form-group">
+																<div class="custom-control custom-checkbox mb-5">
+																	<input type="checkbox" class="custom-control-input" id="customCheck1-1">
+																	<label class="custom-control-label weight-400" for="customCheck1-1">I agree to receive notification emails</label>
+																</div>
+															</div>
+															<div class="form-group mb-0">
+																<input type="submit" class="btn btn-primary" value="Update Information">
+															</div>
+														</li>
+														<li class="weight-500 col-md-6">
+															<h4 class="text-blue h5 mb-20">Edit Social Media links</h4>
+															<div class="form-group">
+																<label>Facebook URL:</label>
+																<input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
+															</div>
+															<div class="form-group">
+																<label>Twitter URL:</label>
+																<input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
+															</div>
+															<div class="form-group">
+																<label>Linkedin URL:</label>
+																<input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
+															</div>
+															<div class="form-group">
+																<label>Instagram URL:</label>
+																<input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
+															</div>
+															<div class="form-group">
+																<label>Dribbble URL:</label>
+																<input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
+															</div>
+															<div class="form-group">
+																<label>Dropbox URL:</label>
+																<input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
+															</div>
+															<div class="form-group">
+																<label>Google-plus URL:</label>
+																<input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
+															</div>
+															<div class="form-group">
+																<label>Pinterest URL:</label>
+																<input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
+															</div>
+															<div class="form-group">
+																<label>Skype URL:</label>
+																<input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
+															</div>
+															<div class="form-group">
+																<label>Vine URL:</label>
+																<input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
+															</div>
+															<div class="form-group mb-0">
+																<input type="submit" class="btn btn-primary" value="Save & Update">
+															</div>
+														</li>
+													</ul>
+												</form>
+											</div>
+										</div>
+										<!-- Setting Tab End -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-wrap pd-20 mb-20 card-box">
+				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+			</div>
+		</div>
+	</div>
+{% endblock content %}
